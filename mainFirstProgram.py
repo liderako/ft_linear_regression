@@ -2,10 +2,11 @@ import sys
 from src.readFile import *
 from src.errorExit import *
 from src.convertData import *
-from src.calcEstimatedPrice import *
+from src.ft_math.calcEstimatedPrice import *
+from src.ft_math.minMaxScaling import *
 from src.isInt import *
 
-def 	convertMileage(s):
+def 	convertMileage(s, dataList):
 	mileage = 0
 	try:
 		isInt(s)
@@ -14,12 +15,12 @@ def 	convertMileage(s):
 			sys.exit(-1)
 	except:
 		errorExit("Invalid digitals mileage")
+	mileage = minMaxScaling(mileage, dataList[1][1], dataList[1][0])
 	return (mileage)
 
 if (len(sys.argv) != 2):
 	errorExit("Usage: python mainFirstProgram mileage")
-mileage = convertMileage(sys.argv[1])
 
-readBuffer = readFile("tetas.csv")
-dataTetaList = convertData(readBuffer)
-print (calcEstimatedPrice(mileage, float(dataTetaList[0][0]), float(dataTetaList[0][1])))
+dataList = convertData(readFile("tetas.csv"))
+mileage = convertMileage(sys.argv[1], dataList)
+print (calcEstimatedPrice(mileage, float(dataList[0][0]), float(dataList[0][1])))

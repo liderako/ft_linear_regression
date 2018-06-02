@@ -1,4 +1,5 @@
 import sys
+from src.errorExit import *
 
 def 	convertData(readBuffer):
     res = readBuffer.split("\n")
@@ -8,6 +9,7 @@ def 	convertData(readBuffer):
         try :
             listRes.append([float(tmp[0]), float(tmp[1])])
         except:
-            pass
-    # listRes.pop(0)
+           pass
+    if (len(listRes)) < 2:
+    	errorExit("Error data")
     return listRes
