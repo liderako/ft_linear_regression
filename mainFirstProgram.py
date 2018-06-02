@@ -22,4 +22,4 @@ mileage = convertMileage(sys.argv[1])
 
 readBuffer = readFile("tetas.csv")
 dataTetaList = convertData(readBuffer)
-print (calcEstimatedPrice(mileage, dataTetaList[0][0], dataTetaList[0][1]))
+print (calcEstimatedPrice(mileage, float(dataTetaList[0][0]), float(dataTetaList[0][1])))
